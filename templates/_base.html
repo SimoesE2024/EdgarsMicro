@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% block head %}
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}Document{% endblock %}</title>
+    {% endblock %}
+</head>
+<body>
+
+    <header>
+        {% block header %}
+        <h1>EDGARS MICROCREDITO E.I</h1>
+        <img src="../EDGARSMICRO/image/Edgars Microcredito.png" alt="Edgars Microcrédito Logo">
+        <nav>
+            <a href="#inicio">Início</a>
+            <a href="#about">Sobre Nós</a>
+            <a href="#produtos">Produtos</a>
+            <a href="../EDGARSMICRO/payment_instructions.html.html">Pagamentos</a>
+            <!-- Link para a página de pagamentos -->
+            <a href="#contactos">Contactos</a>
+        </nav>
+        {% endblock %}
+    </header>
+
+    <main>
+        {% block main %}
+        <h1>Pagina Inicial</h1>
+        <p>This is the home page</p>
+        {% endblock %}
+    </main>
+
+    <footer>
+        {% block footer %}
+        <p>&copy; 2025 - EdgarsMicroCredito.E.i</p>
+        {% endblock %}
+    </footer>
+
+</body>
+</html>
