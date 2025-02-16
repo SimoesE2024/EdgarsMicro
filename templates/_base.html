@@ -1,39 +1,329 @@
+{% load static %}
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt">
 <head>
     {% block head %}
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{% block title %}Document{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <script src="{% static 'js/index.js' %}"></script>
+    <meta name="description" content="Edgars Microcrédito E.I - Soluções financeiras para você.">
+    <meta name="keywords" content="microcrédito, empréstimos, finanças, Edgars">
+    <title>{% block title %}Edgars Microcrédito E.I{% endblock %}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('{% static "image/image1.jpg" %}');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('{% static "image/Edgars Microcredito.png" %}');  <!-- Adicione a imagem de fundo aqui -->
+            background-size: cover;  <!-- Faz a imagem cobrir toda a área -->
+            background-repeat: no-repeat;  <!-- Evita a repetição da imagem -->
+            background-attachment: fixed;  <!-- Fixa a imagem de fundo ao rolar a página -->
+            background-position: center;  <!-- Centraliza a imagem de fundo -->
+        }
+
+        header {
+            background-color: #0f75d4;
+            color: rgb(229, 224, 235);
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        header img {
+            height: 60px;
+        }
+
+        nav {
+            display: flex;
+            gap: 20px;
+        }
+
+        nav a {
+            color: rgb(251, 246, 246);
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        .hero {
+            background-color: rgba(230, 247, 255, 0.8);
+            text-align: center;
+            padding: 50px 20px;
+        }
+
+        .hero h1 {
+            color: #0073e6;
+        }
+
+        .section {
+            padding: 40px 20px;
+        }
+
+        .section:nth-child(even) {
+            background-color: rgba(249, 249, 249, 0.9);
+        }
+
+        .features {
+            display: flex;
+            justify-content: space-around;
+            text-align: center;
+            padding: 25px;
+            background-color: rgba(204, 242, 255, 0.9);
+        }
+
+        .features div {
+            flex: 1;
+            padding: 10px;
+            margin: 10px;
+            background-color: #1f62a6;
+            color: white;
+            border-radius: 5px;
+        }
+
+        .features div h3 {
+            margin-bottom: 20px;
+        }
+
+        .footer {
+            background-color: #0b2763;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .footer a {
+            color: white;
+            text-decoration: underline;
+            font-weight: bold;
+        }
+
+        .about-section {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .about-text {
+            text-align: center;
+        }
+
+        .about-text h2 {
+            color: #0073e6;
+        }
+
+        .about-details {
+            display: flex;
+            justify-content: space-around;
+            background-color: rgba(230, 247, 255, 0.9);
+            padding: 20px;
+            border-radius: 5px;
+        }
+
+        .about-details div {
+            text-align: center;
+            flex: 1;
+            margin: 0 10px;
+            padding: 20px;
+            border-radius: 5px;
+        }
+
+        .about-details div:nth-child(1) {
+            background-color: #1174cb;
+        }
+
+        .about-details div:nth-child(2) {
+            background-color: #0b64bd;
+        }
+
+        .about-details div:nth-child(3) {
+            background-color: #99ccff;
+        }
+
+        .about-details h3 {
+            color: #004a99;
+        }
+
+        .products-section {
+            padding: 20px;
+            background-color: rgba(240, 248, 255, 0.9);
+        }
+
+        .about-overview p {
+            text-align: justify;
+            color: #422424;
+            margin-bottom: 15px;
+            line-height: 1.6;
+            padding: 10px
+        }
+
+        .products-section h2 {
+            text-align: center;
+            color: #0073e6;
+            text-decoration-line: underline;
+            border-radius: 15px;
+            border-color: #0f75d4;
+            margin-bottom: 20px;
+            background-color: #f7f9f5;
+        }
+
+        .product:nth-child(1) {
+            background-color: #cad65e;
+            /* Cinza */
+        }
+
+        .product:nth-child(2) {
+            background-color: #3cc53c;
+            /* Verde Claro */
+        }
+
+        .product:nth-child(3) {
+            background-color: #c74d4d;
+            /* Vermelho Rosa */
+        }
+
+        .products {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .Sobre_nos h2 {
+            background-color: #4897ac;
+            color: red;
+        }
+
+        .product {
+            background-color: #4897ac;
+            color: white;
+            padding: 20px;
+            border-radius: 5px;
+            width: 300px;
+            text-align: center;
+        }
+
+        .product h3 {
+            margin-bottom: 10px;
+        }
+
+        .product a {
+            color: rgb(209, 225, 228);
+            text-decoration: underline;
+            font-weight: bold;
+            border-radius: 10px;
+        }
+    </style>
     {% endblock %}
 </head>
 <body>
 
     <header>
         {% block header %}
-        <h1>EDGARS MICROCREDITO E.I</h1>
-        <img src="../EDGARSMICRO/image/Edgars Microcredito.png" alt="Edgars Microcrédito Logo">
+        <img src="{% static 'image/image1.jpg' %}" alt="Edgars Microcrédito Logo">
         <nav>
             <a href="#inicio">Início</a>
             <a href="#about">Sobre Nós</a>
             <a href="#produtos">Produtos</a>
-            <a href="../EDGARSMICRO/payment_instructions.html.html">Pagamentos</a>
-            <!-- Link para a página de pagamentos -->
+            <a href="../EDGARSMICRO/payment_instructions.html">Pagamentos</a>
             <a href="#contactos">Contactos</a>
+            {% if user.is_authenticated %}
+            <form action="{% url 'logout' %}" method="post">
+                {% csrf_token %}
+                <button type="submit">Logout</button>
+            </form>
+            <a href="{% url 'password_change' %}">Mudar Senha</a>
+            {% else %}
+            <a href="{% url 'login' %}">Login</a>
+            <a href="{% url 'signup' %}">Signup</a>
+            {% endif %}
         </nav>
         {% endblock %}
     </header>
 
     <main>
         {% block main %}
-        <h1>Pagina Inicial</h1>
-        <p>This is the home page</p>
+        <section class="hero" id="inicio">
+            <h1>Bem-vindo à EDGARS Microcrédito. E. I </h1>
+            <p>Empoderando sonhos através de soluções financeiras acessíveis.</p>
+        </section>
+        <section class="about-overview">
+            <h2>Sobre Nós</h2>
+            <p>A EDGARS Microcrédito. E. I é uma instituição financeira moçambicana que tem por objecto a provisão de
+                serviços
+                financeiros com foco nas zonas rurais.</p>
+            <p>Somos fiéis na prestação de contas pela utilização de recursos financeiros internos e externos à organização.
+                Prestamos serviços financeiros aos nossos clientes, implementamos e monitoramos as actividades definidas nos
+                planos estratégicos e operacionais. Participamos no fomento de uma cultura de promoção de bem-estar e
+                influenciamos positivamente a proposta de valor da organização a longo prazo, em equilíbrio com o bem-estar
+                das pessoas, da empresa e das comunidades rurais em que nos inserimos.</p>
+            <p>Prestar serviços sustentáveis de alta qualidade para pessoas de baixa renda.</p>
+            <a href="#about" class="navigate-about">Saiba Mais</a>
+        </section>
+
+        <section class="features">
+            <div>
+                <h3>NOSSOS PRODUTOS</h3>
+                <p>Conheça nossos produtos e adira ao financiamento.</p>
+            </div>
+            <div>
+                <h3>SOLICITAR EMPRÉSTIMO</h3>
+                <p>Realize os seus sonhos com nosso financiamento.</p>
+            </div>
+            <div>
+                <h3>AGÊNCIAS</h3>
+                <p>Encontre a agência mais próxima.</p>
+            </div>
+            <div>
+                <h3>APOIO À BANCA DIGITAL</h3>
+                <p>Saiba mais sobre os nossos canais digitais.</p>
+            </div>
+        </section>
+
+        <section class="products-section" id="produtos">
+            <h2>Produtos</h2>
+            <div class="products">
+                <div class="product">
+                    <h3>Crédito Pagamentos Diários</h3>
+                    <p>Limite: 2.000 - 5.000 MT</p>
+                    <a href="{% url 'credito_diario' %}">Solicitar</a>
+                </div>
+                <div class="product">
+                    <h3>Crédito Relâmpago</h3>
+                    <p>Valor: 1.000 - 5.000 MT</p>
+                    <p>Pagamento: até 10 dias</p>
+                    <a href="{% url 'credito_relampago' %}">Solicitar</a>
+                </div>
+                <div class="product">
+                    <h3>Crédito Plus</h3>
+                    <p>Valor Máximo: 20.000 MT</p>
+                    <a href="{% url 'credito_plus' %}">Solicitar</a>
+                </div>
+            </div>
+        </section>
         {% endblock %}
     </main>
 
-    <footer>
+    <footer class="footer" id="contactos">
         {% block footer %}
-        <p>&copy; 2025 - EdgarsMicroCredito.E.i</p>
+        <p>Contacte-nos:</p>
+        <p>Email: <a href="mailto:contato@edgarsmicrocredito.co.mz">contato@edgarsmicrocredito.co.mz</a></p>
+        <p>Telefone: <a href="tel:+258866220038">+258 866220038</a></p>
+        <p>&copy; 2025 EDGARS Microcrédito. Todos os direitos reservados.</p>
         {% endblock %}
     </footer>
 

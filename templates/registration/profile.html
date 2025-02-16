@@ -1,0 +1,58 @@
+{% extends '../_base.html' %}
+{% load static %}
+
+{% block header %}
+  <header id="header" class="header d-flex align-items-center sticky-top">
+    <div class="container-fluid container-xl position-relative d-flex align-items-center">
+      <a href="{% url 'home' %}" class="logo d-flex align-items-center me-auto">
+        <!-- Uncomment the line below if you also wish to use an image logo -->
+        <!-- <img src="assets/img/logo.png" alt=""> -->
+        <h1 class="sitename">Educa</h1>
+      </a>
+
+      <form action="{% url 'logout' %}" method="post" role="form" class="php-email-form">
+        {% csrf_token %}
+        <button type="submit" class="btn-getstarted" style="border: none;">Logout</button>
+      </form>
+    </div>
+  </header>
+{% endblock %}
+{% block main %}
+  <!-- ======= Breadcrumbs ======= -->
+  <div class="breadcrumbs" data-aos="fade-in">
+    <div class="container">
+      <h2>Profile</h2>
+    </div>
+  </div>
+  <!-- End Breadcrumbs -->
+  <section id="contact" class="contact">
+    <div class="container" data-aos="fade-up">
+      <div class="row mt-5">
+        <div class="col-lg-8 mt-5 mt-lg-0">
+          <form action="" method="post" role="form" class="php-email-form">
+            {% csrf_token %}
+            <p>{{ form.username }}</p>
+            <p>{{ form.email }}</p>
+            <button type="submit">Update</button><p>
+              <a href="{% url 'password_change' %}">Change Password.</a>
+            </p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+  <script src="{% static 'assets/js/formStyle.js' %}"></script>
+  <script>
+    let nav_links = document.querySelectorAll('a')
+    nav_links.forEach((link) => {
+      if (link.innerText == 'More') {
+        link.classList.add('active')
+      } else if (link.innerText == 'Home') {
+        link.classList.remove('active')
+      }
+    })
+  </script>
+{% endblock %}
+{% block footer %}
+
+{% endblock %}

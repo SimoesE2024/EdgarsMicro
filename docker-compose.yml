@@ -7,6 +7,9 @@ services:
       - .:/EdgarsMicroCredito
     ports:
       - 8000:8000
+    environment:
+      - DJANGO_SECRET_KEY = 'django-insecure-qlqu0+5%+h6!he+1c3=4cs91_o*nf1z6gw#pbdn^n^in*3=mhk'
+      - DJANGO_DEBUG = False
     depends_on:
       - db
   db:

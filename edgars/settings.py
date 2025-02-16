@@ -11,6 +11,12 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 from pathlib import Path
+from environs import Env # type: ignore
+import os
+
+env = Env()
+env.read_env()
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,12 +26,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-qlqu0+5%+h6!he+1c3=4cs91_o*nf1z6gw#pbdn^n^in*3=mhk'
+SECRET_KEY = env('DJANGO_SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = env.bool("DJANGO_DEBUG", default=False)
 
-ALLOWED_HOSTS = []
+
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 
 
 # Application definition
@@ -56,7 +63,7 @@ ROOT_URLCONF = 'edgars.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR.joinpath('templates')],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],  # Certifique-se de que o diretório 'templates' está incluído
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -69,6 +76,8 @@ TEMPLATES = [
     },
 ]
 
+
+
 WSGI_APPLICATION = 'edgars.wsgi.application'
 
 
@@ -77,12 +86,12 @@ WSGI_APPLICATION = 'edgars.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'postgres',
-        'USER': 'postgres',
-        'PASSWORD': 'postgres',
-        'HOST': 'db',
-        'PORT': 5432,
+        'ENGINE': env("DJANGO_DB_ENGINE", default="django.db.backends.sqlite3"),
+        'NAME': env("DJANGO_DB_NAME", default="db.sqlite3"),
+        'USER': env("DJANGO_DB_USER", default=""),
+        'PASSWORD': env("DJANGO_DB_PASSWORD", default=""),
+        'HOST': env("DJANGO_DB_HOST", default="localhost"),
+        'PORT': env("DJANGO_DB_PORT", default="5432"),
     }
 }
 
@@ -121,7 +130,15 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    BASE_DIR / "static",  # Usa Path corretamente
+]
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
@@ -129,3 +146,4 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = "usuarios.CustomUser"
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"

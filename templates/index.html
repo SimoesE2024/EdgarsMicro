@@ -1,8 +1,66 @@
 {% extends "_base.html" %}
 {% load static %}
+
+{% block title %}Home - Edgars Microcrédito E.I{% endblock %}
+
 {% block main %}
 <main>
-    <title>Home</title>
-    <h1>Pagina Inicial</h1>
+    <section class="hero" id="inicio">
+        <h1>Bem-vindo à EDGARS Microcrédito. E. I </h1>
+        <p>Empoderando sonhos através de soluções financeiras acessíveis.</p>
+    </section>
+    <section class="about-overview">
+        <h2>Sobre Nós</h2>
+        <p>A EDGARS Microcrédito. E. I é uma instituição financeira moçambicana que tem por objecto a provisão de
+            serviços financeiros com foco nas zonas rurais.</p>
+        <p>Somos fiéis na prestação de contas pela utilização de recursos financeiros internos e externos à organização.
+            Prestamos serviços financeiros aos nossos clientes, implementamos e monitoramos as actividades definidas nos
+            planos estratégicos e operacionais. Participamos no fomento de uma cultura de promoção de bem-estar e
+            influenciamos positivamente a proposta de valor da organização a longo prazo, em equilíbrio com o bem-estar
+            das pessoas, da empresa e das comunidades rurais em que nos inserimos.</p>
+        <p>Prestar serviços sustentáveis de alta qualidade para pessoas de baixa renda.</p>
+        <a href="#about" class="navigate-about">Saiba Mais</a>
+    </section>
+
+    <section class="features">
+        <div>
+            <h3>NOSSOS PRODUTOS</h3>
+            <p>Conheça nossos produtos e adira ao financiamento.</p>
+        </div>
+        <div>
+            <h3>SOLICITAR EMPRÉSTIMO</h3>
+            <p>Realize os seus sonhos com nosso financiamento.</p>
+        </div>
+        <div>
+            <h3>AGÊNCIAS</h3>
+            <p>Encontre a agência mais próxima.</p>
+        </div>
+        <div>
+            <h3>APOIO À BANCA DIGITAL</h3>
+            <p>Saiba mais sobre os nossos canais digitais.</p>
+        </div>
+    </section>
+
+    <section class="products-section" id="produtos">
+        <h2>Produtos</h2>
+        <div class="products">
+            <div class="product">
+                <h3>Crédito Pagamentos Diários</h3>
+                <p>Limite: 2.000 - 5.000 MT</p>
+                <a href="../EDGARSMICRO/Credito_diario.html">Solicitar</a>
+            </div>
+            <div class="product">
+                <h3>Crédito Relâmpago</h3>
+                <p>Valor: 1.000 - 5.000 MT</p>
+                <p>Pagamento: até 10 dias</p>
+                <a href="../EDGARSMICRO/Credito_relampago.html">Solicitar</a>
+            </div>
+            <div class="product">
+                <h3>Crédito Plus</h3>
+                <p>Valor Máximo: 20.000 MT</p>
+                <a href="../EDGARSMICRO/Credito_plus.html">Solicitar</a>
+            </div>
+        </div>
+    </section>
 </main>
 {% endblock main %}
