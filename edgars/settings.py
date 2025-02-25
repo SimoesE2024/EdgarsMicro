@@ -17,6 +17,10 @@ import os
 env = Env()
 env.read_env()
 
+LOGIN_URL = 'login'  # Página de login
+LOGIN_REDIRECT_URL = 'home'  # Para onde o usuário vai depois de fazer login
+LOGOUT_REDIRECT_URL = 'login'  # Para onde o usuário vai depois de sair
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -146,4 +150,14 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = "usuarios.CustomUser"
-EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+#EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+# settings.py
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'edgarsimoes52@gmail.com'
+EMAIL_HOST_PASSWORD = 'jyyj swft trfl puyb'
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+

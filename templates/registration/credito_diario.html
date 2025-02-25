@@ -32,7 +32,7 @@
             margin-bottom: 5px;
             font-weight: bold;
         }
-        input {
+        input, select {
             width: 100%;
             padding: 10px;
             margin-bottom: 15px;
@@ -65,12 +65,24 @@
         .back-button:hover {
             background-color: #cc0000;
         }
+        /* Estilizando a área do simulador */
+        .simulator {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+        .simulator p {
+            font-size: 14px;
+            color: #333;
+        }
     </style>
 </head>
 <body>
     <div class="form-container">
         <h2>Solicitar Crédito Pagamentos Diários</h2>
-        <form>
+        <form method="POST" action="{% url 'solicitar_credito' %}">
+            {% csrf_token %}
             <label for="name">Nome Completo</label>
             <input type="text" id="name" name="name" placeholder="Digite seu nome completo" required>
 
@@ -81,7 +93,19 @@
             <input type="tel" id="phone" name="phone" placeholder="Digite seu número de telefone" required>
 
             <label for="amount">Valor Solicitado</label>
-            <input type="number" id="amount" name="amount" placeholder="Digite o valor do empréstimo" required>
+            <input type="number" id="amount" name="amount" placeholder="Digite o valor do empréstimo" required oninput="calcularParcela()">
+
+            <label for="installments">Número de Parcelas</label>
+            <input type="number" id="installments" name="installments" placeholder="Número de parcelas" required oninput="calcularParcela()">
+
+            <label for="interest">Taxa de Juros (% ao mês)</label>
+            <input type="number" id="interest" name="interest" placeholder="Ex: 3.90" step="0.01" required oninput="calcularParcela()">
+
+            <div class="simulator">
+                <h3>Simulação do Empréstimo</h3>
+                <p><strong>Valor da Parcela:</strong> <span id="parcela">R$ 0,00</span></p>
+                <p><strong>Total Pago:</strong> <span id="totalPago">R$ 0,00</span></p>
+            </div>
 
             <label for="collateral">Bem a Penhorar</label>
             <input type="text" id="collateral" name="collateral" placeholder="Descreva o bem a ser penhorado" required>
@@ -89,7 +113,42 @@
             <button type="submit">Enviar Solicitação</button>
         </form>
         <a href="{% url 'home' %}" class="back-button">Voltar à Página Inicial</a>
-
     </div>
+
+    <script>
+        function calcularParcela() {
+            let amount = parseFloat(document.getElementById("amount").value) || 0;
+            let installments = parseInt(document.getElementById("installments").value) || 1;
+            let interest = parseFloat(document.getElementById("interest").value) / 100 || 0;
+
+            if (amount > 0 && installments > 0 && interest > 0) {
+                let i = interest; // taxa de juros convertida para decimal
+                let n = installments; // número de parcelas
+                let parcela = amount * (i * Math.pow(1 + i, n)) / (Math.pow(1 + i, n) - 1);
+                let totalPago = parcela * n;
+
+                document.getElementById("parcela").textContent = `R$ ${parcela.toFixed(2)}`;
+                document.getElementById("totalPago").textContent = `R$ ${totalPago.toFixed(2)}`;
+            } else {
+                document.getElementById("parcela").textContent = "R$ 0,00";
+                document.getElementById("totalPago").textContent = "R$ 0,00";
+            }
+        }
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const form = document.querySelector("form");
+            const amountInput = document.getElementById("amount");
+    
+            form.addEventListener("submit", function (event) {
+                const amount = parseFloat(amountInput.value);
+                if (amount > 5000) {
+                    event.preventDefault();  // Impede o envio do formulário
+                    alert("O valor máximo permitido é 5.000! Por favor, insira um valor válido.");
+                }
+            });
+        });
+    </script>
+    
 </body>
 </html>

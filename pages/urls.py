@@ -1,10 +1,13 @@
 from django.urls import path
 from .views import HomePageView, CreditoDiarioView, CreditoRelampagoView, CreditoPlusView, CreditoEmpresaView
 from .views import signup
+from . import views
+
 
 urlpatterns = [
     # Página inicial com class-based view
     path('', HomePageView.as_view(), name='home'),
+    
     
     # Crédito Diário com class-based view
     path('credito_diario/', CreditoDiarioView.as_view(), name='credito_diario'),
@@ -20,4 +23,5 @@ urlpatterns = [
     
     # Signup com função de view
     path('signup/', signup, name='signup'),
+    path('solicitar/', views.solicitar_credito, name='solicitar_credito'),
 ]
