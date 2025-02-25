@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import HomePageView, CreditoDiarioView, CreditoRelampagoView, CreditoPlusView
+from .views import HomePageView, CreditoDiarioView, CreditoRelampagoView, CreditoPlusView, CreditoEmpresaView
 from .views import signup
 
 urlpatterns = [
@@ -14,6 +14,9 @@ urlpatterns = [
     
     # Crédito Plus com class-based view
     path('credito_plus/', CreditoPlusView.as_view(), name='credito_plus'),
+    
+     # Crédito Empresa com class-based view
+    path('credito_empresa/', CreditoEmpresaView.as_view(), name='credito_empresa'),
     
     # Signup com função de view
     path('signup/', signup, name='signup'),

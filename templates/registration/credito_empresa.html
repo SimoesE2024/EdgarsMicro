@@ -1,0 +1,94 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solicitar - Crédito Empresas</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(to right, gold, #b9f2ff);
+            color: white;
+        }
+        .form-container {
+            background-color: rgba(255, 255, 255, 0.9);
+            color: black;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            margin: auto;
+        }
+        h2 {
+            text-align: center;
+            color: #0073e6;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #0073e6;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+        }
+        button:hover {
+            background-color: #005bb5;
+        }
+        .back-button {
+            background-color: #ff4d4d;
+            margin-top: 15px;
+            text-align: center;
+            padding: 10px;
+            border-radius: 5px;
+            color: white;
+            text-decoration: none;
+            display: block;
+            text-align: center;
+        }
+        .back-button:hover {
+            background-color: #cc0000;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h2>Solicitar Crédito Empresa</h2>
+        <form>
+            <label for="name">Nome Completo</label>
+            <input type="text" id="name" name="name" placeholder="Digite seu nome completo" required>
+
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="Digite seu email" required>
+
+            <label for="phone">Telefone</label>
+            <input type="tel" id="phone" name="phone" placeholder="Digite seu número de telefone" required>
+
+            <label for="amount">Valor Solicitado</label>
+            <input type="number" id="amount" name="amount" placeholder="Digite o valor do empréstimo" required>
+
+            <label for="collateral">Bem a Penhorar</label>
+            <input type="text" id="collateral" name="collateral" placeholder="Descreva o bem a ser penhorado" required>
+
+            <button type="submit">Enviar Solicitação</button>
+        </form>
+        <a href="{% url 'home' %}" class="back-button">Voltar à Página Inicial</a>
+    </div>
+</body>
+</html>

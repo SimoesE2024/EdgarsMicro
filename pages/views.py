@@ -13,6 +13,9 @@ class CreditoRelampagoView(TemplateView):
 
 class CreditoPlusView(TemplateView):
     template_name = 'registration/credito_plus.html'  # Corrigido para templates/registration/
+    
+class CreditoEmpresaView(TemplateView):
+    template_name = 'registration/credito_empresa.html'  # Corrigido para templates/registration/
 
 # Views baseadas em função
 def signup(request):
@@ -30,3 +33,6 @@ def credito_relampago(request):
 
 def credito_plus(request):
     return render(request, 'registration/credito_plus.html')
+
+def credito_empresa(request):
+    return render(request, 'registration/credito_empresa.html')
