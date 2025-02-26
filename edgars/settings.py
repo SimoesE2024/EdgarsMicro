@@ -136,12 +136,17 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
-    BASE_DIR / "../static",  # Usa Path corretamente
+    BASE_DIR / "static",  # Usa Path corretamente
 ]
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+
+LOGIN_URL = '/login/'
+LOGIN_REDIRECT_URL = '/'  # Redireciona após login
+LOGOUT_REDIRECT_URL = '/login/'  # Redireciona para login após logout
+
 
 
 # Default primary key field type

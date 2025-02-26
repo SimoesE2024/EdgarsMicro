@@ -7,9 +7,18 @@ from django.contrib import messages
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.generic import TemplateView
 
 
+@login_required(login_url='/login/')
+def home(request):
+    return render(request, '_base.html')
 
+class HomePageView(LoginRequiredMixin, TemplateView):
+    template_name = '_base.html'
+    login_url = '/login/'  # Redireciona para a página de login
+    redirect_field_name = 'next'  # Redireciona de volta após login
 # Página de registro
 def register(request):
     if request.method == "POST":
