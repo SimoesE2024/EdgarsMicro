@@ -1,42 +1,37 @@
-# views.py
 from django.core.mail import send_mail
 from django.shortcuts import render, redirect
 from django.conf import settings
 from .forms import SolicitationForm
-from django.contrib import messages
-from django.contrib.auth import login, authenticate
-from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from django.contrib.auth import login
+from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import TemplateView
 
 
-@login_required(login_url='/login/')
-def home(request):
-    return render(request, '_base.html')
-
+# ✅ Página inicial protegida por login
 class HomePageView(LoginRequiredMixin, TemplateView):
-    template_name = '_base.html'
-    login_url = '/login/'  # Redireciona para a página de login
+    template_name = 'index.html'  # Agora carrega a página correta
+    login_url = '/login/'  # Redireciona para login se o usuário não estiver autenticado
     redirect_field_name = 'next'  # Redireciona de volta após login
-# Página de registro
+
+
+# ✅ Página de cadastro de usuário
 def register(request):
     if request.method == "POST":
         form = UserCreationForm(request.POST)
         if form.is_valid():
             user = form.save()
             login(request, user)
-            return redirect("home")  # Redireciona após cadastro
+            return redirect("home")  # Redireciona após cadastro bem-sucedido
     else:
         form = UserCreationForm()
     
     return render(request, "register.html", {"form": form})
 
-# Página inicial protegida por login
-@login_required
-def home(request):
-    return render(request, "index.html")  # Certifique-se de ter este template
 
+# ✅ Função para processar a solicitação de crédito
+@login_required(login_url='/login/')  # Exige login antes de acessar esta página
 def solicitar_credito(request):
     if request.method == 'POST':
         form = SolicitationForm(request.POST)
@@ -59,7 +54,6 @@ def solicitar_credito(request):
                 f"Bem a Penhorar: {collateral}"
             )
             
-    
             # Enviar o e-mail
             send_mail(
                 'Solicitação de Crédito Pagamentos Diários',
@@ -68,11 +62,10 @@ def solicitar_credito(request):
                 ['edgarsimoes52@gmail.com'],  # Email para onde a solicitação será enviada
                 fail_silently=False,
             )
+
             # Redirecionar para a página inicial ou página de agradecimento
             return redirect('home')
     else:
         form = SolicitationForm()
 
     return render(request, 'solicitar_credito.html', {'form': form})
-
-

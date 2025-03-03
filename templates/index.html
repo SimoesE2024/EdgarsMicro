@@ -5,6 +5,12 @@
 
 {% block main %}
 <main>
+    {% if user.is_authenticated %}
+        <p>Bem-vindo, {{ user.username }}!</p>
+        <a href="{% url 'login' %}">Sair</a>
+    {% else %}
+        <a href="{% url 'login' %}">Login</a>
+    {% endif %}
     <section class="hero" id="inicio">
         <h1>Bem-vindo à EDGARS Microcrédito. E. I </h1>
         <p>Empoderando sonhos através de soluções financeiras acessíveis.</p>

@@ -19,7 +19,7 @@ env.read_env()
 
 LOGIN_URL = 'login'  # Página de login
 LOGIN_REDIRECT_URL = 'home'  # Para onde o usuário vai depois de fazer login
-LOGOUT_REDIRECT_URL = 'login'  # Para onde o usuário vai depois de sair
+LOGOUT_REDIRECT_URL = '/login/'  # Para onde o usuário vai depois de sair
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -142,11 +142,6 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
-
-LOGIN_URL = '/login/'
-LOGIN_REDIRECT_URL = '/'  # Redireciona após login
-LOGOUT_REDIRECT_URL = '/login/'  # Redireciona para login após logout
-
 
 
 # Default primary key field type
