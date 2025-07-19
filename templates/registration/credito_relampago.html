@@ -70,25 +70,7 @@
 <body>
     <div class="form-container">
         <h2>Solicitar Crédito Relâmpago</h2>
-        <form>
-            <label for="name">Nome Completo</label>
-            <input type="text" id="name" name="name" placeholder="Digite seu nome completo" required>
-
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email" placeholder="Digite seu email" required>
-
-            <label for="phone">Telefone</label>
-            <input type="tel" id="phone" name="phone" placeholder="Digite seu número de telefone" required>
-
-            <label for="amount">Valor Solicitado</label>
-            <input type="number" id="amount" name="amount" placeholder="Digite o valor do empréstimo" required>
-
-            <label for="collateral">Bem a Penhorar</label>
-            <input type="text" id="collateral" name="collateral" placeholder="Descreva o bem a ser penhorado" required>
-
-            <button type="submit">Enviar Solicitação</button>
-        </form><form method="POST" action="{% url 'solicitar_credito' %}">
-            {% csrf_token %}
+                   {% csrf_token %}
             <label for="name">Nome Completo</label>
             <input type="text" id="name" name="name" placeholder="Digite seu nome completo" required>
 

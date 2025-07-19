@@ -10,7 +10,7 @@ body {
 }
 
 header {
-    background-color: #0ee387;
+    background-color: #17e79b;
     color: rgb(229, 224, 235);
     padding: 10px 20px;
     display: flex;
@@ -38,7 +38,7 @@ nav a:hover {
 }
 
 .hero {
-    background-color: rgba(240, 249, 253, 0.375);
+    background-color: rgba(222, 236, 242, 0.375);
     text-align: center;
     padding: 50px 20px;
 }
@@ -78,7 +78,7 @@ nav a:hover {
 
 .footer {
     background-color: #0b2763;
-    color: white;
+    color: rgb(214, 77, 77);
     text-align: center;
     padding: 20px;
 }
