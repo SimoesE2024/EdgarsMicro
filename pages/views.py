@@ -5,6 +5,7 @@ from django.core.mail import send_mail
 from django.conf import settings
 from .forms import SolicitationForm  # Importação correta
 from django.contrib import messages
+from urllib.parse import quote
 
 # Views baseadas em classe
 class HomePageView(TemplateView):
@@ -46,7 +47,8 @@ def credito_empresa(request):
 
 def solicitar_credito(request):
     if request.method == 'POST':
-        form = SolicitationForm(request.POST)
+        form = SolicitationForm(request.POST, request.FILES)  # 🔥 AQUI ESTÁ A CHAVE
+
         if form.is_valid():
             name = form.cleaned_data['name']
             email = form.cleaned_data['email']
@@ -54,17 +56,34 @@ def solicitar_credito(request):
             amount = form.cleaned_data['amount']
             collateral = form.cleaned_data['collateral']
 
-            message = f"Nome: {name}\nEmail: {email}\nTelefone: {phone}\nValor Solicitado: {amount}\nBem a Penhorar: {collateral}"
-            
+            message = f"""
+Nome: {name}
+Email: {email}
+Telefone: {phone}
+Valor Solicitado: {amount}
+Bem a Penhorar: {collateral}
+"""
+
             send_mail(
                 'Solicitação de Crédito Pagamentos Diários',
                 message,
                 settings.DEFAULT_FROM_EMAIL,
-                ['edgarsimoes52@gmail.com'],  
+                ['edgarsimoes52@gmail.com'],
                 fail_silently=False,
             )
-            return redirect('home')
+
+            numero = "258866220038"
+            link = f"https://wa.me/{numero}?text=Nova solicitação recebida"
+
+            return redirect(link)
+
+        else:
+            print("FORM NÃO É VÁLIDO ❌")
+            print(form.errors)
+            print("FILES:", request.FILES)
+
     else:
         form = SolicitationForm()
 
     return render(request, 'solicitar_credito.html', {'form': form})
+

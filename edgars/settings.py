@@ -36,7 +36,7 @@ SECRET_KEY = env('DJANGO_SECRET_KEY')
 DEBUG = env.bool("DJANGO_DEBUG", default=True)
 
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '*']
 
 
 # Application definition
@@ -158,6 +158,6 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'edgarsimoes52@gmail.com'
-EMAIL_HOST_PASSWORD = 'jyyj swft trfl puyb'
+EMAIL_HOST_PASSWORD = 'jyyjswfttrflpuyb'
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 

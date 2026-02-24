@@ -29,6 +29,9 @@ def register(request):
     
     return render(request, "register.html", {"form": form})
 
+@login_required
+def index(request):
+    return render(request, 'index.html')
 
 # ✅ Função para processar a solicitação de crédito
 @login_required(login_url='/login/')  # Exige login antes de acessar esta página

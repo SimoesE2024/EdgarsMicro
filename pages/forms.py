@@ -17,6 +17,6 @@ class SolicitationForm(forms.Form):
 
     def clean_amount(self):
         amount = self.cleaned_data.get("amount")
-        if amount > 5000:
+        if amount > 50000:
             raise forms.ValidationError("O valor máximo permitido é 5.000!")
         return amount

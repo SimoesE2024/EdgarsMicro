@@ -1,0 +1,16 @@
+{% extends "_base.html" %}
+
+{% block content %}
+
+<h2>Solicitar Crédito</h2>
+
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="file" name="document_bi" required>
+    <input type="file" name="document_income" required>
+    <input type="file" name="photo_collateral" required>
+    <button type="submit">Enviar Pedido</button>
+</form>
+
+{% endblock %}
